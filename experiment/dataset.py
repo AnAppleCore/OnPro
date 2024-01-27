@@ -6,16 +6,16 @@ from experiment.tinyimagenet import MyTinyImagenet
 from torch.utils.data import TensorDataset
 
 
-def get_data(dataset_name, batch_size, n_workers):
+def get_data(dataset_name, batch_size, n_workers, **kwargs):
     if "cifar" in dataset_name:
         return get_cifar_data(dataset_name, batch_size, n_workers)
     elif dataset_name == "tiny_imagenet":
-        return get_tinyimagenet(batch_size, n_workers)
+        return get_tinyimagenet(batch_size, n_workers, **kwargs)
     else:
         raise Exception('unknown dataset!')
 
 
-def get_cifar_data(dataset_name, batch_size, n_workers):
+def get_cifar_data(dataset_name, batch_size, n_workers, **kwargs):
     data = {}
     size = [3, 32, 32]
     if dataset_name == "cifar10":
@@ -103,15 +103,15 @@ def get_cifar_data(dataset_name, batch_size, n_workers):
     return data, class_num, class_per_task, Loader, size
 
 
-def get_tinyimagenet(batch_size, n_workers):
+def get_tinyimagenet(batch_size, n_workers, n_tasks=100):
     data = {}
     size = [3, 64, 64]
-    task_num = 100
+    task_num = n_tasks
     class_num = 200
     class_per_task = class_num // task_num
 
     base_path = './data/TINYIMG'
-    data_dir = './data/binary_tiny200_100'
+    data_dir = f'./data/binary_tiny200_{task_num}'
 
     if not os.path.isdir(data_dir):
         os.makedirs(data_dir)

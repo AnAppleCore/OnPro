@@ -20,7 +20,7 @@ def multiple_run(args):
         print(f"-----------------------------run {run} start--------------------------")
         print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         print('=' * 100)
-        data, class_num, class_per_task, task_loader, input_size = get_data(args.dataset, args.batch_size, args.n_workers)
+        data, class_num, class_per_task, task_loader, input_size = get_data(args.dataset, args.batch_size, args.n_workers, n_tasks =args.n_tasks)
         args.n_classes = class_num
         buffer = Buffer(args, input_size).cuda()
 

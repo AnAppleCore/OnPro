@@ -22,6 +22,7 @@ def get_params():
     parser.add_argument('--seed', type=int, default=0, help='(default=%(default)d)')
     parser.add_argument('--lr', default=0.0005, type=float, help='(default=%(default)f)')
     parser.add_argument('--dataset', type=str, default='cifar10', help='(default=%(default)s)')
+    parser.add_argument('--n_tasks', type=int, default=10, help='(default=%(default)s)')
     parser.add_argument('--buffer_size', type=int, default=200, help='(default=%(default)s)')
     parser.add_argument('--buffer_batch_size', type=int, default=64, help='(default=%(default)s)')
     parser.add_argument('--run_nums', type=int, default=10, help='(default=%(default)s)')
